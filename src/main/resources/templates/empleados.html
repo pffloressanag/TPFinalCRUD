@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html xmlns:th="https://www.thymeleaf.org/">
+<head>
+    <meta charset="UTF-8">
+    <title>Lista de empleados</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-9ndCyUaIbzAi2FUVXJi0CjmCapSmO7SnpJef0486qhLnuZ2cdeRhO02iuK6FUUVM" crossorigin="anonymous">
+</head>
+<body>
+
+    <nav class="navbar navbar-expand-md bg-dark navbar-dark">
+        <a class="navbar-brand" href="#">Control de empleados</a>
+        <!-- Navbar links -->
+        <div class="collapse navbar-collapse" id="collapsibleNavbar">
+            <ul class="navbar-nav">
+                <li class="nav-item"><a class="nav-link"
+                    th:href="@{/empleados}">Empleados Fábrica VulcaLar</a></li>
+            </ul>
+        </div>
+    </nav>
+
+
+
+    <div class="container">
+        <div class="row">
+            <h3>Fábrica de calzado</h3>
+        </div>
+
+        <div class="row">
+            <div class="col-lg-3">
+                <a th:href="@{empleados/nuevo}" class="btn btn-primary btn-sn-mb3">Agregar empleado</a><br>
+
+            </div>
+
+        </div>
+
+        <div class="container mt-3">
+            <table class="table table-striped table-bordered">
+                <thead class="table-dark">
+                    <tr>
+                        <th>Nombre</th>
+                        <th>Apellido</th>
+                        <th>DNI</th>
+                        <th>Dirección</th>
+                        <th>Acciones</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr th:each="empleado : ${empleados}">
+                        <td th:text="${empleado.nombre}">Nombre</td>
+                        <td th:text="${empleado.apellido}">Apellido</td>
+                        <td th:text="${empleado.dni}">DNI</td>
+                        <td th:text="${empleado.direccion}">Dirección</td>
+                        <td>
+                            <a th:href="@{/empleados/editar/{id}(id=${empleado.id})}" class="btn btn-info">Editar</a>
+                            <a th:href="@{/empleados/{id}(id=${empleado.id})}" class="btn btn-danger">Eliminar</a>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+</body>
+</html>
